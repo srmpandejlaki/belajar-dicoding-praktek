@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Event World</title>
+
+    <style>
+      .contents {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 2px solid black;
+        padding: 15px;
+      }
+
+      #generateButtn {
+        margin-top: 5px;
+        margin-bottom: 15px;
+      }
+    </style>
+  </head>
+  <!-- cara lain <body onload="welcome()"> -->
+  <body>
+    <div
+      class="contents"
+      style="
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        visibility: hidden;
+      "
+    >
+      <!-- cara lain: <button onclick="increment()" > -->
+      <button id="incrementButton">Tekan Aku :)</button>
+      <head>
+        Kamu sudah menekan tombol di atas sebanyak
+        <span id="count">0</span>
+      </head>
+    </div>
+
+    <script>
+      //function untuk menampilkan pesan tersembunyi setelah count = 7
+      function increment() {
+        document.getElementById("count").innerText++;
+
+        if (document.getElementById("count").innerText == 7) {
+          const hiddenMessage = document.createElement("h4");
+          hiddenMessage.innerText =
+            "Selamat, Anda menemukan hadiah tersembunyi...";
+
+          const image = document.createElement("img");
+          image.setAttribute(
+            "src",
+            "https://i.pinimg.com/474x/ea/d6/53/ead653128c82463f859b1124e295d58a.jpg"
+          );
+
+          const contents = document.querySelector(".contents");
+          contents.appendChild(hiddenMessage).appendChild(image);
+        }
+      }
+
+      //function untuk menampilkan pop-up sebelum konten muncul
+      function welcome() {
+        alert("Sim salabim muncullah elemen-elemen HTML!");
+        const contents = document.querySelector(".contents");
+        contents.style.removeProperty("visibility");
+      }
+
+      // document.getElementById("incrementButton").onclick = increment;
+      // document.body.onload = welcome;
+
+      /* 
+      menulis kode menggunakan addEventListener di sini
+      rumus : parameter I -> tipe event yg digunakan (men-trigger)
+              parameter II -> function khusus yg akan dijalankan (function js)
+      */
+      window.addEventListener("load", welcome);
+      document
+        .getElementById("incrementButton")
+        .addEventListener("click", increment);
+    </script>
+  </body>
+</html>
