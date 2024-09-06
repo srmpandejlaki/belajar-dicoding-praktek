@@ -105,6 +105,36 @@ document.addEventListener("DOMContentLoaded", function () {
       return null;
     }
 
+    // function hapus todo dari list selesai
+    function removeTaskFromCompleted(todoId) {
+      const todoTarget = findTodoIndex(todoId);
+
+      if (todoTarget === -1) return;
+
+      todos.splice(todoTarget, 1); // splice berfungsi = menghapus todo
+      document.dispatchEvent(new Event(RENDER_EVENT));
+    }
+
+    // function undo todo dari list selesai
+    function undoTaskFromCompleted(todoId) {
+      const todoTarget = findTodo(todoId);
+
+      if (todoTarget == null) return;
+
+      todoTarget.isCompleted = false;
+      document.dispatchEvent(new Event(RENDER_EVENT));
+    }
+
+    // implementasi findTodoIndex()
+    function findTodoIndex(todoId) {
+      for (const index in todos) {
+        if (todos[index].id === todoId) {
+          return index;
+        }
+      }
+      return -1; // jika todoId tidak ditemukan di dalam array todos
+    }
+
     return container;
   }
 
@@ -113,10 +143,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const uncompletedTODOList = document.getElementById("todos");
     uncompletedTODOList.innerHTML = ""; //membersihkan container todo sebelum diperbarui
 
+    // menampung kontainer dari todo yang sudah selesai
+    const completedTODOList = document.getElementById("completed-todos");
+    completedTODOList.innerHTML = ""; // menghapus elemen yang sudah ditampilkan
+
     for (const todoItem of todos) {
       const todoElement = makeTodo(todoItem);
       if (!todoItem.isCompleted) {
         uncompletedTODOList.append(todoElement); // fungsi append = tambah elemen DOM baru
+      } else {
+        completedTODOList.append(todoElement);
       }
     }
   });
