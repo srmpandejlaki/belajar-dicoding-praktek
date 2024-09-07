@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //me-render data yang telah disimpan pada array todos
     document.dispatchEvent(new Event(RENDER_EVENT));
+    saveData();
   }
 
   function generateId() {
@@ -92,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         todoTarget.isCompleted = true;
         document.dispatchEvent(new Event(RENDER_EVENT));
+        saveData();
       }
     }
 
@@ -113,6 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       todos.splice(todoTarget, 1); // splice berfungsi = menghapus todo
       document.dispatchEvent(new Event(RENDER_EVENT));
+      saveData();
     }
 
     // function undo todo dari list selesai
@@ -123,6 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       todoTarget.isCompleted = false;
       document.dispatchEvent(new Event(RENDER_EVENT));
+      saveData();
     }
 
     // implementasi findTodoIndex()
@@ -155,5 +159,30 @@ document.addEventListener("DOMContentLoaded", function () {
         completedTODOList.append(todoElement);
       }
     }
+  });
+
+  // function simpan data ke local storage
+  function saveData() {
+    if (isStorageExist()) {
+      const parsed = JSON.stringify(todos);
+      localStorage.setItem(STORAGE_KEY, parsed);
+      document.dispatchEvent(new Event(SAVED_EVENT));
+    }
+  }
+
+  //
+  const SAVED_EVENT = "saved-todo";
+  const STORAGE_KEY = "TODO_APPS";
+
+  function isStorageExist() /* boolean */ {
+    if (typeof Storage === undefined) {
+      alert("Browser kamu tidak mendukung local storage");
+      return false;
+    }
+    return true;
+  }
+
+  document.addEventListener(SAVED_EVENT, function () {
+    console.log(localStorage.getItem(STORAGE_KEY));
   });
 });
