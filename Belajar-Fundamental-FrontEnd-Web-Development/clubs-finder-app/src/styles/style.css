@@ -74,6 +74,8 @@ main {
 
 .search-form .form-group {
   flex-grow: 1;
+
+  position: relative;
 }
 
 .search-form .form-group input {
@@ -85,6 +87,35 @@ main {
   border-block-start: none;
   border-block-end: 1px solid cornflowerblue;
   font-size: 1em;
+}
+
+.search-form .form-group input:focus-visible {
+  outline: none;
+}
+
+.search-form .form-group label {
+  line-height: 60px;
+  font-size: 1em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: cornflowerblue;
+
+  white-space: nowrap;
+
+  position: absolute;
+  top: 0;
+  left: 20px;
+
+  user-select: none;
+  pointer-events: none;
+}
+
+.search-form .form-group input:focus-visible ~ label,
+.search-form .form-group input:valid ~ label {
+  left: 10px;
+  top: -16px;
+
+  font-size: 0.8em;
 }
 
 .search-form button {
