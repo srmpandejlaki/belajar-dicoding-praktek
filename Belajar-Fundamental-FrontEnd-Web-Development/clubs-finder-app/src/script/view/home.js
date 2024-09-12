@@ -1,11 +1,14 @@
-import Utils from '../utils.js';
-import Clubs from '../data/local/clubs.js';
+import Utils from "../utils.js";
+import Clubs from "../data/local/clubs.js";
 
 const home = () => {
-  const clubListContainerElement = document.querySelector('#clubListContainer');
-  const clubLoadingElement = clubListContainerElement.querySelector('.search-loading');
-  const clubListElement = clubListContainerElement.querySelector('.club-list');
-  const listElement = clubListElement.querySelector('.list');
+  const searchFormElement = document.querySelector("#search-form");
+
+  const clubListContainerElement = document.querySelector("#clubListContainer");
+  const clubLoadingElement =
+    clubListContainerElement.querySelector(".search-loading");
+  const clubListElement = clubListContainerElement.querySelector(".club-list");
+  const listElement = clubListElement.querySelector(".list");
 
   const showSportClub = () => {
     showLoading();
@@ -14,6 +17,13 @@ const home = () => {
     displayResult(result);
 
     showClubList();
+  };
+
+  const onSearchHandler = (event) => {
+    event.preventDefault();
+
+    const query = event.target.elements.name.value;
+    showSportClub(query);
   };
 
   const displayResult = (clubs) => {
@@ -37,7 +47,7 @@ const home = () => {
       `;
     });
 
-    listElement.innerHTML = clubItems.join('');
+    listElement.innerHTML = clubItems.join("");
   };
 
   const showLoading = () => {
@@ -55,6 +65,8 @@ const home = () => {
   };
 
   showSportClub();
+
+  searchFormElement.addEventListener("submit", onSearchHandler);
 };
 
 export default home;
