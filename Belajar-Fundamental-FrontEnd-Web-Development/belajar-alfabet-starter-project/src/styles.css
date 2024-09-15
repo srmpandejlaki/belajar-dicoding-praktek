@@ -47,7 +47,7 @@ header .wrapper {
   margin-block: 1rem;
 
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 
   column-gap: 24px;
   row-gap: 32px;
