@@ -60,6 +60,10 @@ main {
 }
 
 /* Search bar */
+.search-bar-container {
+  display: inline;
+}
+
 .floating-form {
   background-color: white;
   padding: 16px;
