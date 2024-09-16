@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Flex Basis Simulation</title>
+
+    <link
+      rel="stylesheet"
+      href="https://codepen.io/web-dot-dev/pen/abpoXGZ.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <h1 style="text-align: center; margin-block-end: 32px">
+        Flex Basis Simulation
+      </h1>
+
+      <div class="controls">
+        <label>
+          Ubah <code>flex-direction</code> untuk <code>.result</code>:
+          <select id="switcher">
+            <option value="row">row</option>
+            <option value="row-reverse">row-reverse</option>
+            <option value="column">column</option>
+            <option value="column-reverse">column-reverse</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="container" id="container">
+        <div>
+          Nilai <code>flex-direction</code> untuk <code>.box</code>:
+          <span id="currentSize"></span>%
+        </div>
+        <div class="result" style="margin-block-start: 4px">
+          <div class="box bg-primary color-light"></div>
+        </div>
+      </div>
+    </main>
+
+    <script src="index.js"></script>
+  </body>
+</html>

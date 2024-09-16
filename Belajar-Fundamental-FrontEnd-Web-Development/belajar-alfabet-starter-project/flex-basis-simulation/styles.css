@@ -1,0 +1,57 @@
+main {
+  padding: 16px;
+  margin-inline: auto;
+
+  width: 100%;
+  max-width: 800px;
+}
+
+.container {
+  margin-block-start: 16px;
+}
+
+.result {
+  display: flex;
+
+  max-width: 100%;
+  width: 500px;
+  max-height: 100%;
+  height: 500px;
+
+  align-items: start;
+}
+
+.box {
+  flex-basis: 20%;
+  max-width: none;
+
+  padding: var(--metric-box-spacing);
+  border: 1px solid var(--color-stroke);
+
+  font-weight: 500;
+  text-align: center;
+
+  box-shadow: var(--generic-shadow);
+  animation: loop 1500ms linear 0s infinite alternate forwards;
+}
+
+@keyframes loop {
+  0% {
+    flex-basis: 20%;
+  }
+  20% {
+    flex-basis: 30%;
+  }
+  40% {
+    flex-basis: 45%;
+  }
+  60% {
+    flex-basis: 65%;
+  }
+  80% {
+    flex-basis: 85%;
+  }
+  100% {
+    flex-basis: 100%;
+  }
+}

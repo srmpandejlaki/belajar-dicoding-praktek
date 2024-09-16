@@ -151,22 +151,10 @@ main {
 }
 
 .club-list .list {
-  overflow: auto;
-}
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
-.club-list .list > * {
-  float: left;
-  width: 49%;
-
-  margin-block-end: 3%;
-}
-
-.club-list .list > *:nth-child(odd) {
-  float: left;
-}
-
-.club-list .list > *:nth-child(even) {
-  margin-inline-start: 2%;
+  gap: 16px;
 }
 
 .club-list .list .card .fan-art-club {
