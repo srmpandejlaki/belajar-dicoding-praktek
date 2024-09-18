@@ -9,18 +9,18 @@ class FooterBar extends HTMLElement {
     this._style = document.createElement("style");
   }
 
-  updateStyle() {
+  _updateStyle() {
     this._style.textContent = `
-        :host {
+      :host {
         display: block;
-        }
-        
-        div {
+      }
+ 
+      div {
         padding: 24px 20px;
-        
+ 
         text-align: center;
-        }
-        `;
+      }
+    `;
   }
 
   _emptyContent() {
@@ -33,13 +33,15 @@ class FooterBar extends HTMLElement {
 
   render() {
     this._emptyContent();
-    this._updateStyles();
+    this._updateStyle();
 
     this._shadowRoot.appendChild(this._style);
-    this._shadowRoot.innerHTML += `
-        <div>
-            Club Finder &copy; 2024
-        </div>
-        `;
+    this._shadowRoot.innerHTML += `      
+      <div>
+        Club Finder &copy; 2023
+      </div>
+    `;
   }
 }
+
+customElements.define("footer-bar", FooterBar);

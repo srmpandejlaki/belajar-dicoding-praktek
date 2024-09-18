@@ -11,32 +11,32 @@ class AppBar extends HTMLElement {
 
   _updateStyle() {
     this._style.textContent = `
-     :host {
+      :host {
         display: block;
-        width: 100%
-            
+        width: 100%;
+        
         color: white;
-            
+        
         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
-        }
-
-        div {
+      }
+ 
+      div {
         padding: 24px 20px;
-        }
-
-        .brand-name {
+      }
+ 
+      .brand-name {
         margin: 0;
-            
+      
         font-size: 1.7em;
-        }
-     `;
+      }
+    `;
   }
 
   _emptyContent() {
     this._shadowRoot.innerHTML = "";
   }
 
-  connectedCallvack() {
+  connectedCallback() {
     this.render();
   }
 
@@ -45,7 +45,7 @@ class AppBar extends HTMLElement {
     this._updateStyle();
 
     this._shadowRoot.appendChild(this._style);
-    this._shadowRoot.innerHTML += `
+    this._shadowRoot.innerHTML += `      
       <div>
         <h1 class="brand-name">Sport Club Finder</h1>
       </div>
@@ -53,4 +53,4 @@ class AppBar extends HTMLElement {
   }
 }
 
-customeElements.define("app-bar", AppBar);
+customElements.define("app-bar", AppBar);
