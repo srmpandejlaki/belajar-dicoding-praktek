@@ -1,11 +1,12 @@
 class ImageFigure extends HTMLElement {
   static get observedAttributes() {
-    return ["img", "altImg", "caption"];
+    return ["img", "altImg"];
   }
 
   constructor() {
     super();
 
+    this._shadowRoot = this.attachShadow({ mode: "open" });
     this._style = document.createElement("style");
   }
 
@@ -41,23 +42,9 @@ class ImageFigure extends HTMLElement {
     return value;
   }
 
-  set caption(value) {
-    const hasChange = this.caption != value;
-    if (hasChange) {
-      this.removeAttribute("caption");
-    }
-
-    this.setAttribute("caption", value);
-  }
-
-  get caption() {
-    const value = this.getAttribute("caption");
-    return value;
-  }
-
   updateStyle() {
     this._style.textContent = `
-      ${this.localName} {
+      :host {
         display: block;
       }
 
@@ -93,17 +80,19 @@ class ImageFigure extends HTMLElement {
     this.emptyContent();
     this.updateStyle();
 
-    this.appendChild(this._style);
-    this.innerHTML += `
+    this._shadowRoot.appendChild(this._style);
+    this._shadowRoot.innerHTML += `
       <figure>
         <img src="${this.img}" alt="${this.altImg}" />
-        <figcaption>${this.caption}</figcaption>
+        <figcaption>
+          <slot></slot>
+        </figcaption>
       </figure>
     `;
   }
 
   emptyContent() {
-    this.innerHTML = "";
+    this._shadowRoot.innerHTML = "";
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
