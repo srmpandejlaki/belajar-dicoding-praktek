@@ -14,7 +14,7 @@ const home = () => {
   const showSportClub = (query) => {
     showLoading();
 
-    const result = Clubs.getAll();
+    const result = Clubs.searchClub(query);
     displayResult(result);
 
     showClubList();
@@ -23,7 +23,7 @@ const home = () => {
   const onSearchHandler = (event) => {
     event.preventDefault();
 
-    const query = event.target.elements.name.value;
+    const { query } = event.detail;
     showSportClub(query);
   };
 
@@ -62,7 +62,7 @@ const home = () => {
 
   showSportClub();
 
-  searchFormElement.addEventListener("submit", onSearchHandler);
+  searchFormElement.addEventListener("search", onSearchHandler);
   showQueryWaiting();
 };
 
