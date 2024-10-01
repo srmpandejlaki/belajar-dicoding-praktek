@@ -4,7 +4,7 @@ import Clubs from "../data/local/clubs.js";
 const home = () => {
   const searchFormElement = document.querySelector("search-bar");
 
-  const clubListContainerElement = document.querySelector("#clubListContainer");
+  const clubListContainerElement = document.querySelector("#club ListContainer");
   const clubQueryWaitingElement = document.querySelector("query-waiting");
   const clubLoadingElement = document.querySelector("search-loading");
   const clubListElement = clubListContainerElement.querySelector("club-list");
